@@ -19,17 +19,20 @@ function Interpreter(canvas, angle, distance, contextOptions, colors) {
 
 Interpreter.prototype.iterate = function (axiom, rules, level) {
   return Array(
-    level
+    Number(level)
   ).fill(
     axiom
   ).reduce(
     function (prev, current) {
-      return rules.reduce(function (prev, rule) {
-        return prev.replace(
-          new RegExp(rule[0], 'g'),
-          rule[1]
-        );
-      }, prev);
+      return rules.reduce(
+        function (prev, rule) {
+          return prev.replace(
+            new RegExp(rule[0], 'g'),
+            rule[1]
+          );
+        },
+        prev
+      );
     },
     axiom
   );
