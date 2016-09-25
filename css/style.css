@@ -1,0 +1,140 @@
+body {
+  font-family: Helvatica, sans-serif;
+  width: 800px;
+  margin: 0 auto;
+}
+
+header {
+  margin: auto auto -25px;
+  text-align: center;
+}
+
+header h1 {
+  margin: 30px 0 0;
+  font-size: 1.9em;
+  font-weight: normal;
+}
+
+header h2 {
+  margin: 2px 0 20px;
+  font-size: 1.4em;
+  font-weight: normal;
+}
+
+header a {
+  color: black;
+  margin: 0 5px;
+}
+
+header a:hover {
+  color: blue;
+}
+
+header a:active {
+  color: red;
+}
+
+canvas {
+  background: #F7F7F6;
+  height: 500px;
+  width: 400px;
+}
+
+.example {
+  margin: 50px auto 50px;
+  padding-top: 40px;
+  padding-bottom: 10px;
+  overflow: hidden;
+  border-top: 5px solid #F7F7F6;
+}
+
+.info {
+  float: left;
+  width: 400px;
+}
+
+.example canvas {
+  float: left;
+}
+
+.settings-panel {
+  margin: 0 15px 0 5px;
+}
+
+.settings-panel label {
+  display: block;
+  margin: 15px 0 2px 0;
+  color: gray;
+  font-size: 1em;
+  font-family: monospace;
+}
+
+.settings-panel .rules {
+  width: 90%;
+  height: 150px;
+}
+
+.settings-panel .axiom,
+.settings-panel .rules {
+  background: #F0F0F0;
+  border: 0;
+  padding: 10px;
+  font-family: monospace;
+  outline: none;
+  color: gray;
+  font-size: 1em;
+}
+
+.settings-panel input[type='range'] {
+  width: 200px;
+}
+
+h3 {
+  font-size: 1.4em;
+  margin: 5px 0 0 5px;
+}
+
+h3 span {
+  color: #ccc;
+  font-size: 0.9em;
+  display: block;
+}
+
+.range {
+  color: gray;
+  font-family: monospace;
+}
+
+#constants {
+  border-top: 5px solid #F7F7F6;
+  margin: 40px auto;
+  padding: 30px 0;
+}
+
+table {
+  text-align: left;
+  width: 100%;
+  margin-top: 20px;
+}
+
+table th, td {
+  padding: 5px 10px;
+  border-left: 1px solid #ECECEC;
+  border-bottom: 1px solid #ECECEC;
+}
+
+table th {
+  background: #FBFBFB;
+  padding: 10px 10px;
+}
+
+footer {
+  padding: 0 20px 100px;
+  font-size: 1.3em;
+  line-height: 1.5em;
+  text-align: right;
+}
+
+footer a {
+  color: black;
+}

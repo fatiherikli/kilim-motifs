@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Kilim motifs</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<header>
+  <h1>Procedural Kilim Motif Generation</h1>
+  <h2>with Lindenmayer System</h2>
+  <a href="#constants">Constants</a>
+  <a href="http://github.com/fatiherikli/kilim-motifs">Source Code</a>
+  <a href="https://en.wikipedia.org/wiki/L-system">L-system at Wikipedia</a>
+</header>
+
+<div class="example">
+  <div class="info">
+    <h3>Koç Boynuzu <span>Ram's horn</span></h3>
+    <div id="kocboynuzu-settings"></div>
+  </div>
+  <canvas id="kocboynuzu" width="800" height="1000"></canvas>
+</div>
+
+<div class="example">
+  <div class="info">
+    <h3>Elibelinde <span>Hands-on-hips</span></h3>
+    <div id="elibelinde-settings"></div>
+  </div>
+  <canvas id="elibelinde" width="800" height="1000"></canvas>
+</div>
+
+<div class="example">
+  <div class="info">
+    <h3>Dulavratotu <span>Burdock</span></h3>
+    <div id="cengel-settings"></div>
+  </div>
+  <canvas id="cengel" width="800" height="1000"></canvas>
+</div>
+
+<div id="constants">
+  <h3>Constants</h3>
+  <table>
+    <thead>
+      <th width="100">Instructor</th>
+      <th>Action</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td>F</td>
+        <td>Move forward and track a line</td>
+      </tr>
+      <tr>
+        <td>f</td>
+        <td>Move forward half length distance and track an line</td>
+      </tr>
+      <tr>
+        <td>M</td>
+        <td>Move forward</td>
+      </tr>
+      <tr>
+        <td>m</td>
+        <td>Move forward half length</td>
+      </tr>
+      <tr>
+        <td>+, -</td>
+        <td>Rotate the canvas by given angle</td>
+      </tr>
+      <tr>
+        <td>[</td>
+        <td>Save current rotation and position</td>
+      </tr>
+      <tr>
+        <td>]</td>
+        <td>Restore saved rotation and position</td>
+      </tr>
+      <tr>
+        <td>=</td>
+        <td>Flip the canvas as horizontal</td>
+      </tr>
+      <tr>
+        <td>|</td>
+        <td>Flip the canvas as vertical</td>
+      </tr>
+      <tr>
+        <td>Z</td>
+        <td>Scale up the canvas</td>
+      </tr>
+      <tr>
+        <td>O</td>
+        <td>Scale down the canvas</td>
+      </tr>
+      <tr>
+        <td>S</td>
+        <td>Switch the line color</td>
+      </tr>
+      <tr>
+        <td>{</td>
+        <td>Save current color</td>
+      </tr>
+      <tr>
+        <td>}</td>
+        <td>Restore current color</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<footer>
+  <a href="http://fatiherikli.com">Fatih Erikli</a> <br />
+  MIT Licensed, 2016. 
+</footer>
+
+<script type="text/template" id="settings-template">
+  <div class="settings-panel">
+    <label>Axiom</label>
+    <input type="text" class="axiom" />
+    <label>Rules</label>
+    <textarea class="rules"></textarea>
+    <label>Angle</label>
+    <input type="range" min="1" max="90" value="45" class="angle" />
+    <span class="range"></span>
+    <label>Line Distance</label>
+    <input type="range" min="1" max="50" value="14" class="distance" />
+    <span class="range"></span>
+    <label>Iterations</label>
+    <input type="range" min="1" max="50" value="14" class="iterations" />
+    <span class="range"></span>
+  </div>
+</script>
+<script src="js/Interpreter.js"></script>
+<script src="js/RuleEditor.js"></script>
+<script src="js/utils.js"></script>
+<script>
+  new RuleEditor(
+    new Interpreter(
+      document.getElementById('cengel'),
+      45,
+      25, {
+        lineWidth: 2
+      }
+    ),
+    'P',
+    [
+      ['P', 'P|P|{SN}'],
+      ['P', '[P]=[P]='],
+      ['P', '[+FB----M++B----M++B----M++B]'],
+      ['B', '++F----M++FB'],
+      ['N', 'P+[N]'],
+    ], 
+    4
+  ).renderTo(
+    document.getElementById('cengel-settings')
+  );
+
+  new RuleEditor(
+    new Interpreter(
+      document.getElementById('elibelinde'),
+      45,
+      19,
+      {
+        lineWidth: 2
+      }
+    ),
+    'P',
+    [
+      ['P', 'P++ZPO'],
+      ['P', 'P=P|P=P'],
+      ['P', '[+f--f+fL]'],
+      ['L', 'FI'],
+      ['I', '[JRFF++KFF+F++F+F4++F++F+++f]'],
+      ['J', '{OSFfIZ}'],
+      ['R', '+R'],
+    ], 
+    2
+  ).renderTo(
+    document.getElementById('elibelinde-settings')
+  );
+
+  new RuleEditor(
+    new Interpreter(
+      document.getElementById('kocboynuzu'),
+      45,
+      14
+    ),
+    'S[P]ZZSSP',
+    [
+      ['P', '[MM+++d++D++d++D]'],
+      ['D', 'FFF[-FFFP]'],
+      ['d', 'FFF[-FP]'],
+      ['P', 'P'],
+      ['P', 'B=B='],
+      ['B', '[FF-FFLF--L++llFF++FFFF++FFF]'],
+      ['L', 'F--E'],
+      ['l', 'F++E'],
+      ['E', 'FE'],
+    ], 
+    1
+  ).renderTo(
+    document.getElementById('kocboynuzu-settings')
+  );
+</script>
+</body>
+</html>
