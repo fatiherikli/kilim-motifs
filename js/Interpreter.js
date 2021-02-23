@@ -5,7 +5,7 @@ function Interpreter(canvas, angle, distance, contextOptions, colors) {
   this.colorIndex = 0;
   this.colorStack = [];
   this.colors = colors || (
-    ["#1ba39c", "#1ba39c", '#1ba39c', '#f8de7e', 'black']
+    ['#f8de7e', 'black', "#1ba39c", "#1ba39c", '#1ba39c']
   );
 
   this.contextOptions = Object.assign({
